@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: balik-tutma-db-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: balik_tutma_rehberi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Development Server (Hot Reload)
+  app:
+    image: node:24-alpine
+    container_name: balik-tutma-app-dev
+    restart: unless-stopped
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/balik_tutma_rehberi"
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "
+        npm install &&
+        npx prisma generate &&
+        npx prisma db push &&
+        npm run seed &&
+        npm run dev
+      "
+
+volumes:
+  postgres_data_dev:

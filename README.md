@@ -19,6 +19,69 @@ Türkiye'deki balık türleri, av alanları, ekipmanlar ve av sezonları hakkın
 
 ## Kurulum
 
+### 🚀 Hızlı Kurulum (Docker ile - Önerilen)
+
+En kolay ve hızlı kurulum yöntemi. Sadece Docker yüklü olması gerekiyor.
+
+1. **Projeyi klonlayın**
+```bash
+git clone https://github.com/yunusemre6161/balik-tutma-sitesi.git
+cd balik-tutma-sitesi
+```
+
+2. **Docker Compose ile başlatın**
+```bash
+docker-compose up
+```
+
+Bu kadar! Proje otomatik olarak:
+- PostgreSQL veritabanını oluşturacak
+- Tüm bağımlılıkları yükleyecek
+- Veritabanı tablolarını oluşturacak
+- Örnek verileri yükleyecek
+- Uygulamayı başlatacak
+
+Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açın.
+
+**İpucu:** Arka planda çalıştırmak için:
+```bash
+docker-compose up -d
+```
+
+**Durdurmak için:**
+```bash
+docker-compose down
+```
+
+**Geliştirme modu (Hot Reload) için:**
+```bash
+docker-compose -f docker-compose.dev.yml up
+```
+Bu mod kod değişikliklerini otomatik algılar ve sayfayı yeniler.
+
+---
+
+### 🛠️ Manuel Kurulum (Docker olmadan)
+
+#### Otomatik Kurulum Scripti
+
+En kolay yol, setup scriptini çalıştırmak:
+
+```bash
+git clone https://github.com/yunusemre6161/balik-tutma-sitesi.git
+cd balik-tutma-sitesi
+./setup.sh
+```
+
+Script sizin için:
+- Bağımlılıkları yükleyecek
+- .env dosyasını oluşturacak
+- Veritabanını hazırlayacak
+- Örnek verileri yükleyecek
+- Sunucuyu başlatacak
+
+#### Manuel Adımlar
+
 1. **Projeyi klonlayın**
 ```bash
 git clone https://github.com/yunusemre6161/balik-tutma-sitesi.git
@@ -32,28 +95,31 @@ npm install
 
 3. **Ortam değişkenlerini ayarlayın**
 ```bash
-# .env.example dosyasını .env olarak kopyalayın
 cp .env.example .env
 ```
 
 `.env` dosyasını düzenleyin ve kendi PostgreSQL bağlantı bilgilerinizi girin:
 ```
-DATABASE_URL="postgresql://kullanici:sifre@localhost:5432/veritabani_adi"
+DATABASE_URL="postgresql://kullanici:sifre@localhost:5432/balik_tutma_rehberi"
 ```
 
-4. **Veritabanını oluşturun ve migrasyonları çalıştırın**
+4. **PostgreSQL veritabanını oluşturun**
+```bash
+createdb balik_tutma_rehberi
+```
+
+5. **Veritabanı tablolarını oluşturun**
 ```bash
 npx prisma generate
 npx prisma db push
 ```
 
-5. **Örnek verileri yükleyin**
+6. **Örnek verileri yükleyin**
 ```bash
 npm run seed
 ```
-Bu komut veritabanına örnek balık türleri, av alanları ve ekipman verileri yükler.
 
-6. **Geliştirme sunucusunu başlatın**
+7. **Geliştirme sunucusunu başlatın**
 ```bash
 npm run dev
 ```
