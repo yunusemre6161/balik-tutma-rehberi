@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Balık Tutma Rehberi
 
-## Getting Started
+Türkiye'deki balık türleri, av alanları, ekipmanlar ve av sezonları hakkında kapsamlı bilgi sunan Next.js tabanlı web uygulaması.
 
-First, run the development server:
+## Özellikler
 
+- 🐟 Balık türleri ve detaylı bilgileri
+- 🗺️ İnteraktif Türkiye haritası ile av alanları
+- 🎣 Balıkçılık ekipmanları rehberi
+- 📅 Av sezonları takibi
+- 🗄️ PostgreSQL veritabanı entegrasyonu
+- 🎨 Modern ve responsive tasarım
+
+## Gereksinimler
+
+- Node.js 18.x veya üzeri
+- PostgreSQL veritabanı
+- npm veya yarn
+
+## Kurulum
+
+1. **Projeyi klonlayın**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yunusemre6161/balik-tutma-sitesi.git
+cd balik-tutma-sitesi
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Bağımlılıkları yükleyin**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Ortam değişkenlerini ayarlayın**
+```bash
+# .env.example dosyasını .env olarak kopyalayın
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`.env` dosyasını düzenleyin ve kendi PostgreSQL bağlantı bilgilerinizi girin:
+```
+DATABASE_URL="postgresql://kullanici:sifre@localhost:5432/veritabani_adi"
+```
 
-## Learn More
+4. **Veritabanını oluşturun ve migrasyonları çalıştırın**
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. **Geliştirme sunucusunu başlatın**
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açın.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Kullanılabilir Komutlar
 
-## Deploy on Vercel
+- `npm run dev` - Geliştirme sunucusunu başlatır
+- `npm run build` - Production için projeyi derler
+- `npm start` - Production sunucusunu başlatır
+- `npm run lint` - Kod kalitesi kontrolü yapar
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Teknolojiler
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend:** Next.js 16, React 19, TypeScript
+- **Stil:** Tailwind CSS 4
+- **Veritabanı:** PostgreSQL, Prisma ORM
+- **Harita:** Leaflet, React Leaflet
+- **İkonlar:** Lucide React
+
+## Proje Yapısı
+
+```
+├── app/                    # Next.js App Router sayfaları
+│   ├── api/               # API rotaları
+│   ├── balik-turleri/     # Balık türleri sayfaları
+│   ├── av-alanlari/       # Av alanları sayfası
+│   ├── ekipmanlar/        # Ekipmanlar sayfası
+│   └── av-sezonlari/      # Av sezonları sayfası
+├── frontend/              # Frontend bileşenleri
+│   ├── components/        # React bileşenleri
+│   └── pages/            # Sayfa bileşenleri
+├── backend/               # Backend logic
+│   ├── controllers/       # API controller'ları
+│   └── lib/              # Yardımcı kütüphaneler
+├── shared/                # Paylaşılan tipler ve veriler
+│   ├── data/             # Statik veri dosyaları
+│   └── types/            # TypeScript tip tanımları
+├── prisma/                # Prisma schema ve migrations
+└── public/                # Statik dosyalar
+
+```
+
+## Katkıda Bulunma
+
+1. Bu repository'yi fork edin
+2. Feature branch'i oluşturun (`git checkout -b feature/yeniOzellik`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik eklendi'`)
+4. Branch'inizi push edin (`git push origin feature/yeniOzellik`)
+5. Pull Request oluşturun
+
+## Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır.
+
+## İletişim
+
+Yunus Emre - [@yunusemre6161](https://github.com/yunusemre6161)
+
+Proje Linki: [https://github.com/yunusemre6161/balik-tutma-sitesi](https://github.com/yunusemre6161/balik-tutma-sitesi)
