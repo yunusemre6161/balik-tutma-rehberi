@@ -13,20 +13,29 @@ Türkiye'deki balık türleri, av alanları, ekipmanlar ve av sezonları hakkın
 
 ## Gereksinimler
 
+### Docker ile (Önerilen - Tüm platformlar)
+- Docker Desktop (Windows/macOS) veya Docker Engine (Linux)
+- Docker Compose
+
+### Manuel kurulum için
 - Node.js 18.x veya üzeri
 - PostgreSQL veritabanı
 - npm veya yarn
+
+**Windows Kullanıcıları için Not:**
+- Docker ile kurulum en kolay ve sorunsuz yöntemdir
+- Manuel kurulum için PostgreSQL indirmeniz gerekir: https://www.postgresql.org/download/windows/
 
 ## Kurulum
 
 ### 🚀 Hızlı Kurulum (Docker ile - Önerilen)
 
-En kolay ve hızlı kurulum yöntemi. Sadece Docker yüklü olması gerekiyor.
+En kolay ve hızlı kurulum yöntemi. **Windows, macOS ve Linux**'ta çalışır. Sadece Docker yüklü olması gerekiyor.
 
 1. **Projeyi klonlayın**
 ```bash
-git clone https://github.com/yunusemre6161/balik-tutma-sitesi.git
-cd balik-tutma-sitesi
+git clone https://github.com/yunusemre6161/balik-tutma-rehberi.git
+cd balik-tutma-rehberi
 ```
 
 2. **Docker Compose ile başlatın**
@@ -67,9 +76,24 @@ Bu mod kod değişikliklerini otomatik algılar ve sayfayı yeniler.
 
 En kolay yol, setup scriptini çalıştırmak:
 
+**Linux / macOS:**
 ```bash
-git clone https://github.com/yunusemre6161/balik-tutma-sitesi.git
-cd balik-tutma-sitesi
+git clone https://github.com/yunusemre6161/balik-tutma-rehberi.git
+cd balik-tutma-rehberi
+./setup.sh
+```
+
+**Windows (CMD veya PowerShell):**
+```bash
+git clone https://github.com/yunusemre6161/balik-tutma-rehberi.git
+cd balik-tutma-rehberi
+setup.bat
+```
+
+**Windows (Git Bash / WSL):**
+```bash
+git clone https://github.com/yunusemre6161/balik-tutma-rehberi.git
+cd balik-tutma-rehberi
 ./setup.sh
 ```
 
@@ -84,8 +108,8 @@ Script sizin için:
 
 1. **Projeyi klonlayın**
 ```bash
-git clone https://github.com/yunusemre6161/balik-tutma-sitesi.git
-cd balik-tutma-sitesi
+git clone https://github.com/yunusemre6161/balik-tutma-rehberi.git
+cd balik-tutma-rehberi
 ```
 
 2. **Bağımlılıkları yükleyin**

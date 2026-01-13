@@ -1,0 +1,26 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Shell scripts should always use LF
+*.sh text eol=lf
+
+# Windows scripts should always use CRLF
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Source code
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+
+# Docker files
+Dockerfile text eol=lf
+docker-compose*.yml text eol=lf
+
+# Config files
+.env* text eol=lf
+*.config.* text eol=lf
