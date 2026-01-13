@@ -47,7 +47,13 @@ npx prisma generate
 npx prisma db push
 ```
 
-5. **Geliştirme sunucusunu başlatın**
+5. **Örnek verileri yükleyin**
+```bash
+npm run seed
+```
+Bu komut veritabanına örnek balık türleri, av alanları ve ekipman verileri yükler.
+
+6. **Geliştirme sunucusunu başlatın**
 ```bash
 npm run dev
 ```
@@ -60,6 +66,7 @@ Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açın.
 - `npm run build` - Production için projeyi derler
 - `npm start` - Production sunucusunu başlatır
 - `npm run lint` - Kod kalitesi kontrolü yapar
+- `npm run seed` - Veritabanına örnek verileri yükler
 
 ## Teknolojiler
 
