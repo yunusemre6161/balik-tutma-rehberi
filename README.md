@@ -62,11 +62,12 @@ docker-compose up -d
 docker-compose down
 ```
 
-**Geliştirme modu (Hot Reload) için:**
+**Not:** `docker-compose up` development modunda çalışır ve kod değişikliklerini otomatik algılar (Hot Reload).
+
+**Production build için:**
 ```bash
-docker-compose -f docker-compose.dev.yml up
+docker-compose -f docker-compose.prod.yml up
 ```
-Bu mod kod değişikliklerini otomatik algılar ve sayfayı yeniler.
 
 ---
 

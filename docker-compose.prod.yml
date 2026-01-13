@@ -4,7 +4,7 @@ services:
   # PostgreSQL Database
   db:
     image: postgres:16-alpine
-    container_name: balik-tutma-db-dev
+    container_name: balik-tutma-db-prod
     restart: unless-stopped
     environment:
       POSTGRES_DB: balik_tutma_rehberi
@@ -13,28 +13,38 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data_dev:/var/lib/postgresql/data
+      - postgres_data_prod:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  # Next.js Development Server (Hot Reload)
+  # Next.js Application (Production Build)
   app:
-    image: node:24-alpine
-    container_name: balik-tutma-app-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: balik-tutma-app-prod
     restart: unless-stopped
-    working_dir: /app
     ports:
       - "3000:3000"
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@db:5432/balik_tutma_rehberi"
-      NODE_ENV: development
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Init service for database setup (runs once)
+  db-setup:
+    image: node:24-alpine
+    container_name: balik-tutma-db-setup
+    working_dir: /app
     volumes:
       - .:/app
-      - /app/node_modules
-      - /app/.next
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/balik_tutma_rehberi"
     depends_on:
       db:
         condition: service_healthy
@@ -44,8 +54,9 @@ services:
         npx prisma generate &&
         npx prisma db push &&
         npm run seed &&
-        npm run dev
+        echo 'Database setup complete!'
       "
+    restart: "no"
 
 volumes:
-  postgres_data_dev:
+  postgres_data_prod:

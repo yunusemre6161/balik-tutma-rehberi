@@ -22,25 +22,29 @@ services:
 
   # Next.js Application
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: node:24-alpine
     container_name: balik-tutma-app
     restart: unless-stopped
+    working_dir: /app
     ports:
       - "3000:3000"
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@db:5432/balik_tutma_rehberi"
-      NODE_ENV: production
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
     depends_on:
       db:
         condition: service_healthy
     command: >
       sh -c "
-        npx prisma db push &&
+        npm install &&
         npx prisma generate &&
+        npx prisma db push &&
         npm run seed &&
-        node server.js
+        npm run dev
       "
 
 volumes:
