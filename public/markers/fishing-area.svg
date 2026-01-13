@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple location pin marker -->
+  <g filter="url(#shadow)">
+    <path d="M16 2C10.477 2 6 6.477 6 12C6 18.5 16 30 16 30C16 30 26 18.5 26 12C26 6.477 21.523 2 16 2Z" fill="#9333EA" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="16" cy="12" r="4" fill="#FFFFFF"/>
+  </g>
+  <defs>
+    <filter id="shadow" x="4" y="1" width="24" height="32" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dy="1"/>
+      <feComposite in2="SourceAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+      <feBlend in2="SourceGraphic"/>
+    </filter>
+  </defs>
+</svg>

@@ -1,0 +1,17 @@
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Blue fish icon marker -->
+  <g filter="url(#shadow)">
+    <circle cx="14" cy="14" r="13" fill="#2563EB" stroke="#FFFFFF" stroke-width="2"/>
+    <path d="M18 14L16 12V13H11C10 13 9 12 8 10C7 12 6 13 5 13H8V15H5C6 15 7 16 8 18C9 16 10 15 11 15H16V16L18 14Z" fill="#FFFFFF"/>
+    <circle cx="13" cy="11.5" r="1" fill="#2563EB"/>
+  </g>
+  <defs>
+    <filter id="shadow" x="0" y="0" width="28" height="29" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dy="1"/>
+      <feComposite in2="SourceAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="SourceGraphic"/>
+    </filter>
+  </defs>
+</svg>

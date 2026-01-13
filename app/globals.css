@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Leaflet Map Styles */
+@import "leaflet/dist/leaflet.css";
+
+/* Map Container */
+.leaflet-container {
+  background: #f3f4f6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dark Mode Map Styles */
+@media (prefers-color-scheme: dark) {
+  .leaflet-container {
+    background: #1f2937;
+  }
+
+  .leaflet-popup-content-wrapper {
+    background-color: #1f2937;
+    color: #f3f4f6;
+  }
+
+  .leaflet-popup-tip {
+    background-color: #1f2937;
+  }
+
+  .leaflet-popup-close-button {
+    color: #f3f4f6 !important;
+  }
+
+  .leaflet-control-zoom a {
+    background-color: #374151 !important;
+    color: #f3f4f6 !important;
+    border-color: #4b5563 !important;
+  }
+
+  .leaflet-control-zoom a:hover {
+    background-color: #4b5563 !important;
+  }
+
+  .leaflet-control-attribution {
+    background-color: rgba(31, 41, 55, 0.8) !important;
+    color: #9ca3af !important;
+  }
+
+  .leaflet-control-attribution a {
+    color: #60a5fa !important;
+  }
+}
+
+/* Custom Marker Styles */
+.fishing-area-marker,
+.fish-region-marker {
+  transition: transform 0.2s ease;
+}
+
+.fishing-area-marker:hover,
+.fish-region-marker:hover {
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+/* Marker Cluster Styles */
+.custom-marker-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(147, 51, 234, 0.2);
+  border: 2px solid #9333ea;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.custom-marker-cluster:hover {
+  background-color: rgba(147, 51, 234, 0.3);
+  transform: scale(1.1);
+}
+
+.cluster-icon {
+  color: #9333ea;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .custom-marker-cluster {
+    background-color: rgba(147, 51, 234, 0.3);
+  }
+
+  .cluster-icon {
+    color: #c084fc;
+  }
+}
+
+/* Popup Custom Styles */
+.leaflet-popup-content {
+  margin: 0;
+  min-width: 200px;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0.75rem;
+  padding: 0;
+}
+
+/* Loading Skeleton */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.map-loading-skeleton {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: #e5e7eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  .map-loading-skeleton {
+    background-color: #374151;
+  }
+}

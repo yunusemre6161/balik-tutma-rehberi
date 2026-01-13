@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Fish {
+  id             String    @id @default(cuid())
+  name           String    @unique
+  scientificName String?
+  description    String
+  image          String
+  bestMonths     String[]
+  regions        String[]
+  fishingType    String[]
+  closedSeasonStart String?
+  closedSeasonEnd   String?
+  minSize        Float?
+  maxSize        Float?
+  habitat        String
+  baitTypes      String[]
+  difficulty     Difficulty @default(ORTA)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@map("fish")
+}
+
+model FishingArea {
+  id          String     @id @default(cuid())
+  name        String
+  city        String
+  region      String
+  description String
+  lat         Float?
+  lng         Float?
+  fishTypes   String[]
+  difficulty  Difficulty @default(ORTA)
+  bestTimes   String[]
+  facilities  String[]
+  accessType  AccessType
+  image       String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("fishing_areas")
+}
+
+model Equipment {
+  id                  String            @id @default(cuid())
+  name                String
+  category            EquipmentCategory
+  description         String
+  recommendedFor      String[]
+  specSize            String?
+  specWeight          String?
+  specMaterial        String?
+  specLength          String?
+  priceMin            Float?
+  priceMax            Float?
+  isBeginnerFriendly  Boolean           @default(false)
+  image               String?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@map("equipment")
+}
+
+enum Difficulty {
+  KOLAY
+  ORTA
+  ZOR
+}
+
+enum AccessType {
+  KIYI
+  TEKNE
+  HER_IKISI
+}
+
+enum EquipmentCategory {
+  OLTA
+  IGNE
+  MISINA
+  YEM
+  AKSESUAR
+}
